@@ -10,6 +10,7 @@ import {
 } from "react";
 import type { Liff } from "@line/liff";
 import liff from "@line/liff";
+import { useI18n } from "@/app/providers/I18nProvider";
 
 type LiffContextValue = {
   liff: Liff | null;
@@ -33,13 +34,14 @@ export type LiffProviderProps = {
 };
 
 function LiffLoading() {
+  const { t } = useI18n();
   return (
     <div className="flex min-h-[50vh] flex-col items-center justify-center gap-3 text-foreground">
       <div
         className="size-9 animate-spin rounded-full border-2 border-foreground/20 border-t-foreground/70"
         aria-hidden
       />
-      <p className="text-sm text-foreground/70">กำลังโหลด…</p>
+      <p className="text-sm text-foreground/70">{t("common.loading")}</p>
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { HtmlLang } from "@/app/components/HtmlLang";
 import "./globals.css";
-import { LiffProvider } from "./providers/LiffProvider";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -25,12 +26,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <LiffProvider liffId={process.env.NEXT_PUBLIC_LIFF_ID ?? ""}>
-          {children}
-        </LiffProvider>
+        <HtmlLang />
+        {children}
       </body>
     </html>
   );
